@@ -8,21 +8,19 @@
 gclient config http://webrtc.googlecode.com/svn/trunk
 echo "target_os = ['mac']" >> .gclient
 gclient sync
-perl -i -wpe "s/target\_os \= \[\'mac\'\]/target\_os \= \[\'ios\', \'mac\']/g" .gclient
-gclient sync
 cd trunk
-export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=ios target_arch=armv7"
+export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=mac target_arch=x64"
 export GYP_GENERATORS="ninja"
-export GYP_GENERATOR_FLAGS="output_dir=out_ios"
+export GYP_GENERATOR_FLAGS="output_dir=out_mac"
 export GYP_CROSSCOMPILE=1
 gclient runhooks
-ninja -C out_ios/Debug -t clean
-ninja -C out_ios/Debug libjingle_peerconnection_objc_test
+ninja -C out_mac/Debug -t clean
+ninja -C out_mac/Debug libjingle_peerconnection_objc_test
 
 AR=`xcrun -f ar`
 PWD=`pwd`
 ROOT=$PWD
-LIBS_OUT=`find $PWD/out_ios/Debug -d 1 -name '*.a'`
+LIBS_OUT=`find $PWD/out_mac/Debug -d 1 -name '*.a'`
 FATTYCAKES_OUT=out.huge
 mkdir -p $FATTYCAKES_OUT
 cd $FATTYCAKES_OUT
@@ -33,10 +31,10 @@ done
 $AR -q libfattycakes.a *.o
 cd $ROOT
 
-ARTIFACT=out_ios/artifact
+ARTIFACT=out_mac/artifact
 mkdir -p $ARTIFACT/lib
 mkdir -p $ARTIFACT/include
-cp $FATTYCAKES_OUT/libfattycakes.a out_ios/artifact/lib
+cp $FATTYCAKES_OUT/libfattycakes.a out_mac/artifact/lib
 HEADERS_OUT=`find net talk third_party webrtc -name *.h`
 for HEADER in $HEADERS_OUT
 do
