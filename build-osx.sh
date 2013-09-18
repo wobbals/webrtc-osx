@@ -9,7 +9,7 @@ gclient config http://webrtc.googlecode.com/svn/trunk
 echo "target_os = ['mac']" >> .gclient
 gclient sync
 cd trunk
-export GYP_DEFINES="build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=mac target_arch=x64"
+export GYP_DEFINES="enable_tracing=1 build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=mac target_arch=x64"
 export GYP_GENERATORS="ninja"
 export GYP_GENERATOR_FLAGS="output_dir=out_mac"
 export GYP_CROSSCOMPILE=1
