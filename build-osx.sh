@@ -13,6 +13,7 @@ export GYP_DEFINES="enable_tracing=1 build_with_libjingle=1 build_with_chromium=
 export GYP_GENERATORS="ninja"
 export GYP_GENERATOR_FLAGS="output_dir=out_mac"
 export GYP_CROSSCOMPILE=1
+perl -0pi -e 's/gdwarf-2/g/g' tools/gyp/pylib/gyp/xcode_emulation.py
 gclient runhooks
 ninja -C out_mac/Debug -t clean || ls out_mac/Debug
 ninja -C out_mac/Debug libjingle_peerconnection_objc_test
