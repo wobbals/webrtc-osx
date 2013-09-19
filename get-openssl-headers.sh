@@ -19,5 +19,5 @@ cd $ROOTDIR/src.openssl/openssl-${VERSION}
 ./Configure gcc no-asm --openssldir=out
 cd $ROOTDIR
 mkdir -p ${ROOTDIR}/trunk
-ln -s $ROOTDIR/src.openssl/openssl-${VERSION}/include $ROOTDIR/trunk/openssl
+ln -s $ROOTDIR/src.openssl/openssl-${VERSION}/include/openssl $ROOTDIR/trunk/openssl
 
