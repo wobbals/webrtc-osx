@@ -4,6 +4,8 @@
 # This script automates the build process described by webrtc:
 # https://code.google.com/p/webrtc/source/browse/trunk/talk/app/webrtc/objc/README
 #
+SCRIPT_HOME=`dirname $0`
+$SCRIPT_HOME/get-openssl-headers.sh
 
 gclient config http://webrtc.googlecode.com/svn/trunk
 echo "target_os = ['mac']" >> .gclient
