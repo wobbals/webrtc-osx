@@ -19,6 +19,8 @@ export GYP_GENERATORS="ninja"
 export GYP_GENERATOR_FLAGS="output_dir=out_mac"
 export GYP_CROSSCOMPILE=1
 perl -0pi -e 's/gdwarf-2/g/g' tools/gyp/pylib/gyp/xcode_emulation.py
+perl -0pi -e 's/\$\(SDKROOT\)\/usr\/lib\/libcrypto\.dylib/-lcrypto/g' talk/libjingle.gyp
+perl -0pi -e 's/\$\(SDKROOT\)\/usr\/lib\/libssl\.dylib/-lssl/g' talk/libjingle.gyp
 gclient runhooks
 ninja -C $WEBRTC_OUT -t clean || ls $WEBRTC_OUT
 ninja -C $WEBRTC_OUT libjingle_peerconnection_objc_test
