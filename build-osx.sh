@@ -7,11 +7,11 @@ set -e
 #
 cd $(dirname $0)
 SCRIPT_HOME=$(pwd)
-$SCRIPT_HOME/get-openssl-headers.sh
 
 gclient config http://webrtc.googlecode.com/svn/trunk
 echo "target_os = ['mac']" >> .gclient
 gclient sync
+$SCRIPT_HOME/get-openssl-headers.sh
 cd trunk
 export GYP_DEFINES="enable_tracing=1 build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=mac target_arch=x64"
 export GYP_GENERATORS="ninja"
