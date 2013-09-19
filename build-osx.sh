@@ -1,4 +1,5 @@
-#!/bin/bash -xe
+#!/bin/bash -x
+set -e
 
 #
 # This script automates the build process described by webrtc:
