@@ -7,11 +7,12 @@ set -e
 #
 cd $(dirname $0)
 SCRIPT_HOME=$(pwd)
+export WEBRTC_OUT=out_mac/Debug
 
 gclient config http://webrtc.googlecode.com/svn/trunk
 echo "target_os = ['mac']" >> .gclient
 gclient sync
-$SCRIPT_HOME/get-openssl-headers.sh
+$SCRIPT_HOME/get-openssl.sh
 cd trunk
 export GYP_DEFINES="enable_tracing=1 build_with_libjingle=1 build_with_chromium=0 libjingle_objc=1 OS=mac target_arch=x64"
 export GYP_GENERATORS="ninja"
@@ -19,13 +20,13 @@ export GYP_GENERATOR_FLAGS="output_dir=out_mac"
 export GYP_CROSSCOMPILE=1
 perl -0pi -e 's/gdwarf-2/g/g' tools/gyp/pylib/gyp/xcode_emulation.py
 gclient runhooks
-ninja -C out_mac/Debug -t clean || ls out_mac/Debug
-ninja -C out_mac/Debug libjingle_peerconnection_objc_test || echo "oops"
+ninja -C $WEBRTC_OUT -t clean || ls $WEBRTC_OUT
+ninja -C $WEBRTC_OUT libjingle_peerconnection_objc_test
 
 AR=`xcrun -f ar`
 PWD=`pwd`
 ROOT=$PWD
-LIBS_OUT=`find $PWD/out_mac/Debug -d 1 -name '*.a'`
+LIBS_OUT=`find $PWD/$WEBRTC_OUT -d 1 -name '*.a'`
 FATTYCAKES_OUT=out.huge
 rm -rf $FATTYCAKES_OUT || echo "clean $FATTYCAKES_OUT"
 mkdir -p $FATTYCAKES_OUT
