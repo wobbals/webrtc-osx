@@ -18,7 +18,7 @@ tar xvjf openssl-$VERSION-$PLATFORM.tar.bz2 -C out.openssl
 
 mkdir -p ${ROOTDIR}/trunk/$WEBRTC_OUT
 if [ ! -h $ROOTDIR/trunk/openssl ]; then
-    ln -s $ROOTDIR/src.openssl/openssl-${VERSION}/include/openssl $ROOTDIR/trunk/openssl
+    ln -s $ROOTDIR/out.openssl/include/openssl $ROOTDIR/trunk/openssl
 fi
 
 cp out.openssl/lib/*.a $ROOTDIR/trunk/$WEBRTC_OUT
