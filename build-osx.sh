@@ -20,7 +20,7 @@ export GYP_CROSSCOMPILE=1
 perl -0pi -e 's/gdwarf-2/g/g' tools/gyp/pylib/gyp/xcode_emulation.py
 gclient runhooks
 ninja -C out_mac/Debug -t clean || ls out_mac/Debug
-ninja -C out_mac/Debug libjingle_peerconnection_objc_test
+ninja -C out_mac/Debug libjingle_peerconnection_objc_test || echo "oops"
 
 AR=`xcrun -f ar`
 PWD=`pwd`
