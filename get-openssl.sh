@@ -3,7 +3,7 @@ cd "$(dirname "$0")"
 
 PWD=`pwd`
 ROOTDIR=$PWD
-VERSION="1.0.1c"
+VERSION="1.0.1e"
 PLATFORM=osx
 
 if [ ! -e openssl-${VERSION}-$PLATFORM.tar.bz2 ]; then
