@@ -23,7 +23,7 @@ perl -0pi -e 's/\$\(SDKROOT\)\/usr\/lib\/libcrypto\.dylib/-lcrypto/g' talk/libji
 perl -0pi -e 's/\$\(SDKROOT\)\/usr\/lib\/libssl\.dylib/-lssl/g' talk/libjingle.gyp
 gclient runhooks
 ninja -C $WEBRTC_OUT -t clean || ls $WEBRTC_OUT
-ninja -C $WEBRTC_OUT libjingle_peerconnection_objc_test
+ninja -v -C $WEBRTC_OUT libjingle_peerconnection_objc_test
 
 AR=`xcrun -f ar`
 PWD=`pwd`
